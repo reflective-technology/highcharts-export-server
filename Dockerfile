@@ -18,5 +18,5 @@ COPY config.json chart-config.json package.json pnpm-lock.yaml /app/
 RUN pnpm install --frozen-lockfile
 
 FROM base AS dev
-RUN npx highcharts-export-server --noLogo true --infile chart-config.json --type png
-ENTRYPOINT ["npx", "highcharts-export-server", "--loadConfig", "config.json", "--noLogo", "true", "--enableServer", "1", "--port", "8080"]
+RUN pnpm highcharts-export-server --noLogo true --infile chart-config.json --type png
+ENTRYPOINT ["pnpm", "highcharts-export-server", "--loadConfig", "config.json", "--noLogo", "true", "--enableServer", "1", "--port", "8080"]
