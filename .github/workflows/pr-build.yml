@@ -5,6 +5,9 @@ on:
       - main
 permissions:
   contents: read
+  packages: write
+  attestations: write
+  id-token: write
 env:
   REGISTRY_IMAGE: ghcr.io/reflective-technology/highcharts-export-server
 jobs:
