@@ -1,4 +1,4 @@
-FROM dhi.io/node:24.13.1-sfw-dev AS base
+FROM dhi.io/node:24.14.0-debian12-dev AS base
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable
 RUN apt update && \
     apt install fonts-noto-cjk wget -y && \
