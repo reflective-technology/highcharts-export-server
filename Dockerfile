@@ -14,9 +14,9 @@ RUN apt update && \
     chown -R node:node /app
 USER node
 WORKDIR /app
-COPY config.json chart-config.json package.json package-lock.json /app/
-RUN npm ci
+COPY config.json chart-config.json package.json pnpm-lock.yaml /app/
+RUN pnpm install --frozen-lockfile && \
+    pnpm highcharts-export-server --noLogo true --infile chart-config.json --type png --loadConfig config.json
 
 FROM base AS dev
-RUN npx highcharts-export-server --noLogo true --infile chart-config.json --type png
-ENTRYPOINT ["npx", "highcharts-export-server", "--loadConfig", "config.json", "--noLogo", "true", "--enableServer", "1", "--port", "8080"]
+ENTRYPOINT ["pnpm", "highcharts-export-server", "--loadConfig", "config.json", "--noLogo", "true", "--enableServer", "1", "--port", "8080", "--loadConfig", "config.json"]
