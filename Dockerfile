@@ -1,9 +1,9 @@
-FROM dhi.io/node:24.14.0-debian12-dev AS base
+FROM dhi.io/node:24.14.0-sfw-dev AS base
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable
 RUN apt-get update && \
+    apt-get upgrade -y && \
     apt-get install fonts-noto-cjk=1:20240730+repack1-1 wget=1.25.0-2 -y --no-install-recommends && \
     wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
-    apt-get upgrade -y && \
     apt-get install ./google-chrome-stable_current_amd64.deb -y && \
     apt-get autoclean && \
     apt-get autoremove -y && \
