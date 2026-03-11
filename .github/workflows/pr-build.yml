@@ -5,15 +5,16 @@ on:
       - main
 permissions:
   contents: read
-  packages: write
-  attestations: write
-  id-token: write
 env:
   REGISTRY_IMAGE: ghcr.io/reflective-technology/highcharts-export-server
 jobs:
   build-image:
     name: build image
     runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      attestations: write
+      id-token: write
     steps:
       - uses: actions/checkout@v6.0.2
       - name: Docker meta

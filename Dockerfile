@@ -1,13 +1,13 @@
 FROM dhi.io/node:24.14.0-debian12-dev AS base
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable
-RUN apt update && \
-    apt install fonts-noto-cjk wget -y && \
-    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
-    apt upgrade -y && \
-    apt install ./google-chrome-stable_current_amd64.deb -y && \
-    apt autoclean && \
-    apt autoremove -y && \
-    apt clean && \
+RUN apt-get update && \
+    apt-get install fonts-noto-cjk wget -y && \
+    wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
+    apt-get upgrade -y && \
+    apt-get install ./google-chrome-stable_current_amd64.deb -y && \
+    apt-get autoclean && \
+    apt-get autoremove -y && \
+    apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     rm google-chrome-stable_current_amd64.deb && \
     mkdir -p /app && \
