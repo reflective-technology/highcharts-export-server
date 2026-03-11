@@ -52,12 +52,19 @@ jobs:
       security-events: write
       packages: read
     steps:
+      - uses: actions/checkout@v6.0.2
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v6.0.0
+        with:
+          images: ${{ env.REGISTRY_IMAGE }}
       - name: Scan image with Trivy
         uses: aquasecurity/trivy-action@57a97c7e7821a5776cebc9bb87c984fa69cba8f1
         with:
           image-ref: ${{ steps.meta.outputs.tags }}
           format: "sarif"
           output: "trivy-results.sarif"
+          severity: "CRITICAL,HIGH"
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v4.32.6
         with:
