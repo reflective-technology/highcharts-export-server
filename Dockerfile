@@ -14,7 +14,7 @@ RUN apt update && \
     chown -R node:node /app
 USER node
 WORKDIR /app
-COPY config.json chart-config.json package.json pnpm-lock.yaml /app/
+COPY config.json chart-config.json package.json pnpm-lock.yaml pnpm-workspace.yaml /app/
 RUN pnpm install --frozen-lockfile && \
     pnpm highcharts-export-server --noLogo true --infile chart-config.json --type png --loadConfig config.json
 
