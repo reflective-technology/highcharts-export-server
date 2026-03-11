@@ -19,4 +19,9 @@ RUN pnpm install --frozen-lockfile && \
     pnpm highcharts-export-server --noLogo true --infile chart-config.json --type png --loadConfig config.json
 
 FROM base AS dev
-ENTRYPOINT ["pnpm", "highcharts-export-server", "--loadConfig", "config.json", "--noLogo", "true", "--enableServer", "1", "--port", "8080", "--loadConfig", "config.json"]
+ENV OTHER_NO_LOGO=true SERVER_ENABLE=true SERVER_PORT=8080
+ENTRYPOINT ["pnpm", "highcharts-export-server", "--loadConfig", "config.json"]
+
+FROM base AS prod
+ENV LOGGING_LEVEL=2 OTHER_NO_LOGO=true SERVER_ENABLE=true SERVER_PORT=8080
+ENTRYPOINT ["pnpm", "highcharts-export-server", "--loadConfig", "config.json"]
