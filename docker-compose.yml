@@ -1,0 +1,15 @@
+services:
+  highcharts-export-server:
+    # Because Chrome does not support ARM on Linux, we need to specify the platform to linux/amd64
+    platform: linux/amd64
+    image: ghcr.io/reflective-technology/highcharts-export-server:latest
+    restart: always
+    hostname: highcharts-export-server
+    container_name: highcharts-export-server
+    environment:
+      - EXPORT_RASTERIZATION_TIMEOUT=20000
+    healthcheck:
+      test: wget -qO- http://localhost:8080/health
+      interval: 20s
+      timeout: 4s
+      retries: 3
