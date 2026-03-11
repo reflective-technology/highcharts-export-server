@@ -4,7 +4,7 @@ RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install fonts-noto-cjk=1:20240730+repack1-1 wget=1.25.0-2 -y --no-install-recommends && \
     wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
-    apt-get install ./google-chrome-stable_current_amd64.deb -y && \
+    apt-get install ./google-chrome-stable_current_amd64.deb -y --no-install-recommends && \
     apt-get autoclean && \
     apt-get autoremove -y && \
     apt-get clean && \
