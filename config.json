@@ -1,0 +1,7 @@
+{
+  "puppeteer": {
+    "args": [
+      "--no-sandbox"
+    ]
+  }
+}

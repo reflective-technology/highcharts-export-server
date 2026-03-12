@@ -1,0 +1,3 @@
+allowBuilds:
+  highcharts-export-server: true
+  puppeteer: true
