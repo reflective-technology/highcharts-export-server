@@ -7,7 +7,7 @@ on:
       - "package.json"
 jobs:
   version:
-    runs-on: reflective-local-runner
+    runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.get_version.outputs.version }}
     steps:
@@ -19,7 +19,7 @@ jobs:
       - name: Debug Version
         run: echo "VERSION=${{ steps.info.outputs.version }}"
   tag:
-    runs-on: reflective-local-runner
+    runs-on: ubuntu-latest
     needs: version
     if: needs.version.outputs.version != '0.0.0'
     permissions:

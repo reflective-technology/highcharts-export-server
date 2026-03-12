@@ -50,14 +50,14 @@ curl http://localhost:8080/health
 |---|---|---|
 | `EXPORT_RASTERIZATION_TIMEOUT` | `20000` | Timeout (ms) for chart rasterization |
 | `SERVER_PORT` | `8080` | HTTP port the server listens on |
-| `LOGGING_LEVEL` | `2` (prod) | Log verbosity level |
+| `LOGGING_LEVEL` | `2` | Log verbosity level |
 
 ## Docker Image
 
 The production image is published at:
 
 ```
-ghcr.io/reflective-technology/highcharts-export-server:latest
+public.ecr.aws/zuin/highcharts-export-server:latest
 ```
 
 > **Note:** Because Chrome does not support ARM on Linux, the image is pinned to `linux/amd64`. On Apple Silicon Macs, Docker Desktop will emulate x86_64 automatically.
