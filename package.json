@@ -1,4 +1,5 @@
 {
+  "version": "5.1.0",
 	"dependencies": {
 		"highcharts-export-server": "^5.1.0"
 	}
