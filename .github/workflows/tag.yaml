@@ -8,6 +8,8 @@ on:
 jobs:
   version:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     outputs:
       version: ${{ steps.get_version.outputs.version }}
     steps:
@@ -17,7 +19,9 @@ jobs:
         id: info
         uses: jaywcjlove/github-action-package@6fb8b5f918c1cb2eb3e0416d5b9f45cd4af6ed16
       - name: Debug Version
-        run: echo "VERSION=${{ steps.info.outputs.version }}"
+        run: |
+          echo "VERSION=${{ steps.info.outputs.version }}"
+          echo "VERSION=${{ steps.info.outputs.version }}" >> "$GITHUB_OUTPUT"
   tag:
     runs-on: ubuntu-latest
     needs: version
