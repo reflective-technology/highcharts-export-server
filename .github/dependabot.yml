@@ -21,3 +21,6 @@ updates:
       - dhi
     schedule:
       interval: "daily"
+    ignore:
+      - dependency-name: "node"
+        versions: ["> 25.0.0-sfw-dev"]
