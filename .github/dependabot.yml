@@ -1,14 +1,23 @@
 version: 2
+registries:
+  dhi:
+    type: docker-registry
+    url: dhi.io
+    username: ${{secrets.DOCKERHUB_USER}}
+    password: ${{secrets.DOCKERHUB_PASSWORD}}
+    replaces-base: false
 updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "daily"
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "daily"
   - package-ecosystem: "docker"
     directory: "/"
+    registries:
+      - dhi
     schedule:
-      interval: "weekly"
+      interval: "daily"
