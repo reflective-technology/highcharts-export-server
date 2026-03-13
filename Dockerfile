@@ -1,4 +1,4 @@
-FROM dhi.io/node:24.14.0-sfw-dev AS base
+FROM dhi.io/node:25.8.1-sfw-dev AS base
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable
 RUN apt-get update && \
     apt-get upgrade -y && \
