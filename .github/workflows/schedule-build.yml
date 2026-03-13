@@ -1,8 +1,7 @@
-name: Release Build
+name: Schedule Build
 on:
-  push:
-    tags:
-      - "v*"
+  schedule:
+    - cron: "0 0 1 * *"
 permissions:
   contents: read
 env:
@@ -11,6 +10,10 @@ jobs:
   build-prod-image:
     name: build prod image
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        branch:
+          - v5.1.0
     permissions:
       id-token: write
     steps:
@@ -20,7 +23,7 @@ jobs:
         uses: docker/metadata-action@030e881283bb7a6894de51c315a6bfe6a94e05cf
         with:
           images: ${{ env.REGISTRY_IMAGE }}
-          tags: type=semver,pattern={{version}}
+          tags: type=semver,pattern={{version}},value=${{ matrix.branch }}
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@4d04d5d9486b7bd6fa91e7baf45bbb4f8b9deedd
         with:
@@ -68,3 +71,21 @@ jobs:
         uses: github/codeql-action/upload-sarif@v4.32.6
         with:
           sarif_file: "trivy-results.sarif"
+  generate-sbom:
+    name: generate SBOM
+    runs-on: ubuntu-latest
+    needs: build-prod-image
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v6
+      - name: Run Trivy in GitHub SBOM mode and submit results to Dependency Graph
+        uses: aquasecurity/trivy-action@57a97c7e7821a5776cebc9bb87c984fa69cba8f1
+        with:
+          image-ref: ${{ env.REGISTRY_IMAGE }}:latest
+          format: "github"
+          output: "dependency-results.sbom.json"
+          github-pat: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          TRIVY_USERNAME: ${{ github.actor }}
+          TRIVY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
