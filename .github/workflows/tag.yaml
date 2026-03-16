@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v6
       - name: get version
         id: info
-        uses: jaywcjlove/github-action-package@6fb8b5f918c1cb2eb3e0416d5b9f45cd4af6ed16
+        uses: jaywcjlove/github-action-package@80422aa6ff92d94694afcec1f9ddda84f41ed160
       - name: Debug Version
         run: |
           echo "VERSION=${{ steps.info.outputs.version }}"
