@@ -9,6 +9,7 @@ env:
   REGISTRY_IMAGE: public.ecr.aws/zuin/highcharts-export-server
 jobs:
   build-prod-image:
+    environment: Prod
     name: build prod image
     runs-on: ubuntu-latest
     permissions:
