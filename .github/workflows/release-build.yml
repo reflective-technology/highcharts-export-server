@@ -27,7 +27,7 @@ jobs:
         with:
           buildkitd-config-inline: ${{ vars.BUILDKITD_CONFIG }}
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@8df5847569e6427dd6c4fb1cf565c83acfa8afa7
+        uses: aws-actions/configure-aws-credentials@ec61189d14ec14c8efccab744f656cffd0e33f37
         with:
           # ECR Public can only be logged into from the us-east-1 region
           aws-region: us-east-1
