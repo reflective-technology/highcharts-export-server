@@ -1,6 +1,6 @@
 {
   "name": "highcharts-export-server-docker",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "dependencies": {
     "highcharts-export-server": "^5.1.0"
   },
