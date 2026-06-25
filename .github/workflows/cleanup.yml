@@ -1,0 +1,13 @@
+name: GHCR Cleanup
+on:
+  schedule:
+    - cron: "13 4 * * sun" # every Sunday at 4:13 AM
+  workflow_dispatch:
+permissions:
+  packages: write
+jobs:
+  delete-untagged-images:
+    name: Delete Untagged Images
+    runs-on: ubuntu-latest
+    steps:
+      - uses: dataaxiom/ghcr-cleanup-action@d52806a0dc70b430571a37da1fde39733ffd640f
