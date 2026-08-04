@@ -2,7 +2,7 @@
   "name": "highcharts-export-server-docker",
   "version": "1.0.3",
   "dependencies": {
-    "highcharts-export-server": "^5.1.0"
+    "highcharts-export-server": "^6.0.0"
   },
   "license": "MIT",
   "author": "Reflective Technology Co., Ltd."
