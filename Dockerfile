@@ -1,4 +1,4 @@
-FROM dhi.io/node:24.18.1-0-sfw-dev AS base
+FROM dhi.io/node:24.19.0-0-sfw-dev AS base
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome-stable
 RUN apt-get update && \
     apt-get -y -o DPkg::Options::="--force-confnew" upgrade && \
